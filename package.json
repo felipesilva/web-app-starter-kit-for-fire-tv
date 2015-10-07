@@ -11,7 +11,7 @@
     "README.md"
   ],
   "scripts": {
-    "start": "serve -p 3000 out",
+    "start": "serve -p 3000 out/nytimes",
     "build": "gulp build",
     "clean": "gulp clean"
   },

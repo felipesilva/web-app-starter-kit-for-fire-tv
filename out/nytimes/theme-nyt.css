@@ -1,0 +1,87 @@
+/**
+ * SCSS mixins for use in the firetv.scss file
+ *
+ */
+/* style overrides */
+.app-logo img {
+  width: 630px !important; }
+
+.app-logo {
+  font-size: 2.2em;
+  font-weight: lighter;
+  text-align: right;
+  color: #4d4d4d;
+  left: 50%;
+  right: auto !important;
+  bottom: auto !important;
+  margin-left: -315px;
+  top: 56px; }
+
+.summaryTitle {
+  text-transform: uppercase; }
+
+#left-nav {
+  width: 34% !important; }
+
+#left-nav-list-container.leftnav-collapsed-highlight {
+  -webkit-box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.2); }
+
+.leftnav-menulist-expanded {
+  background: #FFFFFF !important;
+  -webkit-box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.2); }
+
+.leftnav-menu-scrolling-list {
+  -webkit-transition-property: -webkit-transform, top;
+  -webkit-transition-duration: 0.25s;
+  -webkit-transition-timing-function: linear; }
+
+.leftnav-list-item-static {
+  font-size: 1.6em !important;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 0.25s;
+  opacity: 0.40;
+  border: none !important; }
+
+.leftnav-list-item-highlighted, .leftnav-list-item-selected {
+  opacity: 1; }
+
+.leftnav-list-item-chosen {
+  opacity: 0.65; }
+
+.leftnav-list-item-highlighted {
+  background: transparent url("assets/icon_leftnav_arrowDown.png") no-repeat left 100px center !important; }
+
+#shoveler-view .shoveler-rowitem-selected {
+  -webkit-box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.4); }
+
+.one-D-details-summary-text .one-D-summary-title {
+  height: 75px !important;
+  margin-bottom: 8px !important;
+  border-bottom: 1px solid #E6E6E6; }
+
+.one-D-details-summary-text .one-D-summary-pubdate {
+  color: #888888 !important;
+  margin-bottom: 20px !important; }
+
+.one-D-details-summary-text .one-D-summary-description {
+  font-family: georgia,'times new roman',serif;
+  font-style: normal !important;
+  line-height: 1.2em !important; }
+
+.player-controls-content-subtitle {
+  font-family: georgia,'times new roman',serif;
+  font-style: normal !important;
+  line-height: 1.2em !important; }
+
+.player-controls-skip-indicator {
+  color: #FFFFFF !important; }
+  .player-controls-skip-indicator .player-controls-skip-symbol,
+  .player-controls-skip-indicator .player-controls-skip-number,
+  .player-controls-skip-indicator .player-controls-skip-text {
+    margin-top: 5px !important; }
