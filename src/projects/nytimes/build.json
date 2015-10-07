@@ -23,7 +23,7 @@
         "../../common/assets/video/*",
         "../../common/assets/images/*",
         "genericMediaData.json",
-        "./images/nyt-logo-379x64.png"
+        "./images/*"
     ],
     "appJS" : [
         "../../common/js/util.js",

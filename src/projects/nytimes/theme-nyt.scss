@@ -11,11 +11,11 @@ $img-icon-search: none;
 
 $size-leftnav-collapsed-height: 86px !default;
 
-$custom-color-base-bg: #EBEBEB;
-$custom-color-base-fg: #323232;
+$custom-color-base-bg: #242628;
+$custom-color-base-fg: #CCCCCC;
 
-$custom-color-component-bg: #555C73;
-$custom-color-component-fg: lighten(#000000, 30%);
+$custom-color-component-bg: #E6E6E6;
+$custom-color-component-fg: lighten(#CCCCCC, 30%);
 
 
 $color-app-base-bg      : $custom-color-base-bg;
@@ -24,7 +24,7 @@ $color-app-header-bg    : transparent;
 $color-overlay-bg    : $custom-color-base-bg;
 $color-overlay-text : $custom-color-base-fg;
 
-$color-title-text : #323232;
+$color-title-text : #E6E6E6;
 $color-meta-primary-text : darken($custom-color-base-fg, 50%);
 $color-meta-secondary-text: darken($custom-color-base-fg, 30%);
 $color-description-text : $custom-color-base-fg;
@@ -83,7 +83,7 @@ $color-thumbnail-border: $custom-color-component-fg;
 }
 
 #left-nav {
-    width: 34% !important;
+    width: 30% !important;
 }
 
 #left-nav-list-container {
@@ -93,8 +93,8 @@ $color-thumbnail-border: $custom-color-component-fg;
     }
 }
 
-.leftnav-menulist-expanded{
-    background: #EBEBEB !important;
+.leftnav-menulist-expanded {
+    background: $custom-color-base-bg !important;
     @include box-shadow(0px 0px 60px 0px rgba(0,0,0,0.2));
     opacity: 1;
     left: 0;
@@ -110,15 +110,15 @@ $color-thumbnail-border: $custom-color-component-fg;
 }
 
 .leftnav-menu-scrolling-list {
-  -webkit-transition-property: -webkit-transform, top;
-  -webkit-transition-duration: 0.25s;
-  -webkit-transition-timing-function: linear;
+    -webkit-transition-property: -webkit-transform, top;
+    -webkit-transition-duration: 0.25s;
+    -webkit-transition-timing-function: linear;
 }
 
 .leftnav-list-item-static {
-   font-size: 1.6em !important;
-  -webkit-transition-property: opacity;
-  -webkit-transition-duration: 0.25s;
+    font-size: 1.6em !important;
+    -webkit-transition-property: opacity;
+    -webkit-transition-duration: 0.25s;
     opacity: 0.40;
     border: none !important;
 }

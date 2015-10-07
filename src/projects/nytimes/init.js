@@ -9,7 +9,7 @@
         dataURL: "./assets/genericMediaData.json",
         showSearch: true,
         displayButtons: false,
-        appLogo: "./assets/nyt-logo-379x64.png"
+        appLogo: "./assets/nytlogo_white_630.png"
     };
 
     exports.app = new App(settings);

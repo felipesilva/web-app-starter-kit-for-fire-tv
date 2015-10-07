@@ -54,6 +54,10 @@
         */
         this.hide = function () {
             this.$el.hide();
+            // Hide the channel title
+            if(!!this.$channelTitle) {
+                this.$channelTitle.hide();
+            }
         };
 
         /**
@@ -61,6 +65,10 @@
          */
         this.show = function () {
             this.$el.show();
+            // Show the channel title
+            if(!!this.$channelTitle) {
+                this.$channelTitle.show();
+            }
         };
 
        /**
@@ -123,6 +131,26 @@
             $(ele).addClass(CLASS_MENU_ITEM_SELECTED);
         };
 
+        this.setChannelTitle = function (ele) {
+            ele = ele || this.currentSelectionEle;
+
+            if (!!this.$channelTitle) {
+                this.$channelTitle.remove();
+            }
+
+            // This is realy hacky but it'll do for hack week right!? :P
+            this.$channelTitle = $(ele)
+                .clone()
+                .css({
+                    position: 'absolute',
+                    top: 148,
+                    left: 0,
+                    color: $(ele).css('color')
+                })
+                .appendTo('body');
+
+        };
+
        /**
         * Change the style of the selected element to chosen
         * @param {Element} ele currently selected element
@@ -138,6 +166,9 @@
 
             }
             $(ele).addClass(CLASS_MENU_ITEM_CHOSEN);
+
+            // Clone the selected item and add to the page at the exact same place as the item
+            this.setChannelTitle();
         };
 
        /**
