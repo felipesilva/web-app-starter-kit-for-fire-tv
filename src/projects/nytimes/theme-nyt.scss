@@ -11,7 +11,7 @@ $img-icon-search: none;
 
 $size-leftnav-collapsed-height: 86px !default;
 
-$custom-color-base-bg: #FFFFFF;
+$custom-color-base-bg: #EBEBEB;
 $custom-color-base-fg: #323232;
 
 $custom-color-component-bg: #555C73;
@@ -88,13 +88,25 @@ $color-thumbnail-border: $custom-color-component-fg;
 
 #left-nav-list-container {
     &.leftnav-collapsed-highlight {
-        @include box-shadow(0px 0px 60px 0px rgba(0,0,0,0.2));
+        @include box-shadow(none);
+        border: none;
     }
 }
 
 .leftnav-menulist-expanded{
-    background: #FFFFFF !important;
+    background: #EBEBEB !important;
     @include box-shadow(0px 0px 60px 0px rgba(0,0,0,0.2));
+    opacity: 1;
+    left: 0;
+
+    -webkit-transition-property: -webkit-transform, opacity, left;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-timing-function: linear;
+}
+
+.leftnav-menulist-collapsed {
+    opacity: 0;
+    left: -100%;
 }
 
 .leftnav-menu-scrolling-list {
