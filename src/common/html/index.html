@@ -48,7 +48,7 @@
     <!-- Left Nav View Template -->
     <script id="left-nav-template" type="text/x-handlebars-template">
         <div id="left-nav" class="leftnav-main-container">
-            <div id="left-nav-list-container" class="leftnav-menulist-expanded">
+            <div id="left-nav-list-container" class="leftnav-menulist-collapsed">
                 <div id="left-nav-scrolling-list" class="leftnav-menu-scrolling-list">
                     {{#each leftNavItems}}
                     <div class="leftnav-list-item-container">
@@ -117,9 +117,9 @@
             <div class = "next-video-description">{{description}}</div>
             <div class = "next-video-thumbnail"><img src="{{thumbURL}}"></div>
             <div class = "next-video-playingtext">
-                Playing in 
+                Playing in
                 <span id = "next-video-starttext" class = "next-video-starttext">30 </span>
-                seconds 
+                seconds
             </div>
         </div>
     </script>

@@ -87,6 +87,10 @@ $color-thumbnail-border: $custom-color-component-fg;
 }
 
 #left-nav-list-container {
+    -webkit-transition-property: -webkit-transform, opacity, left;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-timing-function: linear;
+
     &.leftnav-collapsed-highlight {
         @include box-shadow(none);
         border: none;
@@ -96,17 +100,14 @@ $color-thumbnail-border: $custom-color-component-fg;
 .leftnav-menulist-expanded {
     background: $custom-color-base-bg !important;
     @include box-shadow(0px 0px 60px 0px rgba(0,0,0,0.2));
-    opacity: 1;
-    left: 0;
-
-    -webkit-transition-property: -webkit-transform, opacity, left;
-    -webkit-transition-duration: 0.2s;
-    -webkit-transition-timing-function: linear;
+    opacity: 1 !important;
+    left: 0 !important;
 }
 
 .leftnav-menulist-collapsed {
-    opacity: 0;
-    left: -100%;
+    background: $custom-color-base-bg !important;
+    opacity: 0 !important;
+    left: -100% !important;
 }
 
 .leftnav-menu-scrolling-list {

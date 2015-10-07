@@ -79,9 +79,9 @@ div {
 
 .leftnav-menulist-collapsed {
     @extend .leftnav-menu-list;
-    top    : $pos-top-leftnav-content;
-    height : $size-leftnav-collapsed-height;
-    z-index: 10;
+    top: 0;
+    height : 100%;
+    z-index: 100;
 }
 
 .leftnav-collapsed-highlight {
@@ -89,10 +89,6 @@ div {
     border: solid;
     border-width: 1px;
     border-color: $color-app-dialog-head-border;
-}
-
-.leftnav-menulist-collapsed .leftnav-menu-scrolling-list {
-    margin-top : -$pos-top-leftnav-content;
 }
 
 .leftnav-menu-scrolling-list {
