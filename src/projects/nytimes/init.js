@@ -6,7 +6,7 @@
         Model: JSONMediaModel,
         PlayerView: PlayerView,
         PlaylistView: PlaylistPlayerView,
-        dataURL: "http://10.51.102.117:4000/svc/video/api/v3/playlist/100000001606605/full",
+        dataURL: "http://10.51.102.117:4000/svc/video/api/v3/playlist/1194811622182/full",
         showSearch: true,
         displayButtons: false,
         appLogo: "./assets/nytlogo_white_630.png"

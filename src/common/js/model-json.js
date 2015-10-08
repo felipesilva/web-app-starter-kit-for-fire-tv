@@ -28,85 +28,138 @@
          * This function loads the initial data needed to start the app and calls the provided callback with the data when it is fully loaded
          * @param {function} the callback function to call with the loaded data
          */
-        this.loadInitialData = function (dataLoadedCallback) {
-            var requestData = {
-                 url: appSettings.dataURL,
-                 type: 'GET',
-                 crossDomain: true,
-                 dataType: 'json',
-                 context : this,
-                 cache : true,
-                 timeout: this.TIMEOUT,
-                 success : function() {
-                    var playlist = arguments[0];
-                    var videos = playlist.videos;
+        this.loadInitialData = function (dataLoaded) {
+            // this.loadChannelPlaylists(function(channelIds){
+            //     this.loadChannels(channelIds, dataLoaded);
+            // }.bind(this));
+            this.loadChannelPlaylists()
+                .then(this.loadAllChannels)
+                .then(function(channels){
                     var medias = [];
 
-                    videos.forEach(function(video){
-                        var media = {};
-                        var thumb;
-                        var image;
-                        var rendition;
-
-                        for (var thumb in video.images) {
-                            if (video.images[thumb].type === "videoSixteenByNine310") {
-                                thumb = video.images[thumb];
-                                break;
-                            }
-                        }
-
-                        for (var img in video.images) {
-                            if (video.images[img].type === "videoSixteenByNine768") {
-                                image = video.images[img];
-                                break;
-                            }
-                        }
-
-                        for (var rendition in video.renditions) {
-                            if (video.renditions[rendition].type === "video_1080p_mp4") {
-                                rendition = video.renditions[rendition];
-                                break;
-                            }
-                        }
-
-                        videoSixteenByNine310
-
-                        media.id = video.id;
-                        media.title = video.headline;
-                        media.pubDate = "";
-                        media.thumbURL = "http://static01.nyt.com" + thumb.url;
-                        media.imgURL = "http://static01.nyt.com" + image.url;
-                        media.videoURL = rendition.url;
-                        media.subtitlesURL = "";
-                        media.categories = [playlist.headline];
-                        media.description = video.summary;
-
-                        medias.push(media);
+                    channels.forEach(function(channel){
+                        channel.forEach(function(video){
+                            medias.push(video);
+                        });
                     });
 
                     this.handleJsonData({media: medias});
-                    dataLoadedCallback();
-                 }.bind(this),
-                 error : function(jqXHR, textStatus) {
-                     // Data feed error is passed to model's parent (app.js) to handle
-                     if (jqXHR.status === 0) {
-                        this.trigger("error", ErrorTypes.INITIAL_NETWORK_ERROR, errorHandler.genStack());
-                        return;
-                     }
-                     switch (textStatus) {
-                        case "timeout" :
-                            this.trigger("error", ErrorTypes.INITIAL_FEED_TIMEOUT, errorHandler.genStack());
-                            break;
-                        case "parsererror" :
-                            this.trigger("error", ErrorTypes.INITIAL_PARSING_ERROR, errorHandler.genStack());
-                            break;
-                        default:
-                            this.trigger("error", ErrorTypes.INITIAL_FEED_ERROR, errorHandler.genStack());
-                            break;
-                     }
-                 }.bind(this)
-             };
-             utils.ajaxWithRetry(requestData);
+
+                    console.log({media: medias});
+                    dataLoaded();
+                }.bind(this));
+        }.bind(this);
+
+        this.loadAllChannels = function (channelIds) {
+            return Promise.map(channelIds, function(id) {
+                return this.loadChannel(id);
+            }.bind(this))
+            .then(function(channels) {
+                return channels;
+            })
+            .catch(function(err) {
+                return err;
+            }.bind(this));
+        }.bind(this);
+
+        this.loadChannel = function(id) {
+            return new Promise(function (resolve, reject) {
+                utils.ajaxWithRetry({
+                    url: 'http://10.51.102.117:4000/svc/video/api/v3/playlist/'+ id +'/full',
+                    type: 'GET',
+                    crossDomain: true,
+                    dataType: 'json',
+                    context : this,
+                    cache : true,
+                    timeout: this.TIMEOUT,
+                    success : function() {
+                        var playlist = arguments[0];
+                        var channel = this.parsePlaylist(playlist);
+                        resolve(channel);
+                    },
+                    error : function(jqXHR, textStatus) {
+                        reject(jqXHR);
+                    }
+                });
+            }.bind(this));
+        };
+
+        this.loadChannelPlaylists = function() {
+            return new Promise(function (resolve, reject) {
+                utils.ajaxWithRetry({
+                    url: 'http://www.nytimes.com/svc/video/api/playlists',
+                    type: 'GET',
+                    crossDomain: true,
+                    dataType: 'jsonp',
+                    context : this,
+                    cache : true,
+                    timeout: this.TIMEOUT,
+                    success : function() {
+                        var allPlaylists = arguments[0].plst_all;
+                        var channelIds = [];
+                        
+                        for (var playlist in allPlaylists) {
+                            if( allPlaylists.hasOwnProperty( playlist ) ) {
+                                if (allPlaylists[playlist].type === "Channel") {
+                                    channelIds.push(playlist);
+                                }
+                            }
+                        }
+
+                        resolve(channelIds);
+                    },
+                    error: function(jqXHR, textStatus) {
+                        reject(jqXHR);
+                    }
+                });
+            }.bind(this));
+        }.bind(this);
+
+        this.parsePlaylist = function(playlist) {
+            this.medias = [];
+            var videos = playlist.videos;
+
+            videos.forEach(function(video){
+                var media = {};
+                var thumb;
+                var image;
+                var rendition;
+
+                for (var thumb in video.images) {
+                    if (video.images[thumb].type === "videoSixteenByNine310") {
+                        thumb = video.images[thumb];
+                        break;
+                    }
+                }
+
+                for (var img in video.images) {
+                    if (video.images[img].type === "videoSixteenByNine768") {
+                        image = video.images[img];
+                        break;
+                    }
+                }
+
+                for (var rendition in video.renditions) {
+                    if (video.renditions[rendition].type === "video_1080p_mp4") {
+                        rendition = video.renditions[rendition];
+                        break;
+                    }
+                }
+
+                media.id = video.id;
+                media.title = video.headline;
+                media.pubDate = "";
+                media.thumbURL = "http://static01.nyt.com" + thumb.url;
+                media.imgURL = "http://static01.nyt.com" + image.url;
+                media.videoURL = rendition.url;
+                media.subtitlesURL = "";
+                media.categories = [playlist.headline];
+                media.description = video.summary;
+
+                this.medias.push(media);
+            }.bind(this));
+
+            return this.medias;
         }.bind(this);
 
        /**
