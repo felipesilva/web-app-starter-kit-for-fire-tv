@@ -38,9 +38,54 @@
                  cache : true,
                  timeout: this.TIMEOUT,
                  success : function() {
-                     var contentData = arguments[0];
-                     this.handleJsonData(contentData);
-                     dataLoadedCallback();
+                    var playlist = arguments[0];
+                    var videos = playlist.videos;
+                    var medias = [];
+
+                    videos.forEach(function(video){
+                        var media = {};
+                        var thumb;
+                        var image;
+                        var rendition;
+
+                        for (var thumb in video.images) {
+                            if (video.images[thumb].type === "videoSixteenByNine310") {
+                                thumb = video.images[thumb];
+                                break;
+                            }
+                        }
+
+                        for (var img in video.images) {
+                            if (video.images[img].type === "videoSixteenByNine768") {
+                                image = video.images[img];
+                                break;
+                            }
+                        }
+
+                        for (var rendition in video.renditions) {
+                            if (video.renditions[rendition].type === "video_1080p_mp4") {
+                                rendition = video.renditions[rendition];
+                                break;
+                            }
+                        }
+
+                        videoSixteenByNine310
+
+                        media.id = video.id;
+                        media.title = video.headline;
+                        media.pubDate = "";
+                        media.thumbURL = "http://static01.nyt.com" + thumb.url;
+                        media.imgURL = "http://static01.nyt.com" + image.url;
+                        media.videoURL = rendition.url;
+                        media.subtitlesURL = "";
+                        media.categories = [playlist.headline];
+                        media.description = video.summary;
+
+                        medias.push(media);
+                    });
+
+                    this.handleJsonData({media: medias});
+                    dataLoadedCallback();
                  }.bind(this),
                  error : function(jqXHR, textStatus) {
                      // Data feed error is passed to model's parent (app.js) to handle
