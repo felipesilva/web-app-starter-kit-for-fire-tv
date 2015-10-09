@@ -40,7 +40,7 @@
         "../../common/js/playlist-player-view.js",
         "../../common/js/controls-view.js",
         "../../common/js/search-input-view.js",
-        "../../common/js/model-json.js",
+        "../../common/js/model-nytimes.js",
         "../../common/js/app.js",
         "init.js",
         "nyt-fonts.js"

@@ -36,11 +36,6 @@
                     console.log("Channels", channels);
 
                     channels.forEach(function(channel){
-                        console.log("video", channel[0].title, " - channel", channel[0].categories[0]);
-                        console.log("video", channel[1].title, " - channel", channel[1].categories[0]);
-                        console.log("video", channel[2].title, " - channel", channel[2].categories[0]);
-                        console.log("video", channel[3].title, " - channel", channel[3].categories[0]);
-                        console.log("video", channel[4].title, " - channel", channel[4].categories[0]);
                         channel.forEach(function(video){
                             medias.push(video);
                         });
@@ -68,10 +63,10 @@
         this.loadChannel = function(id) {
             return new Promise(function (resolve, reject) {
                 utils.ajaxWithRetry({
-                    url: 'http://10.51.211.52:4000/svc/video/api/v3/playlist/'+ id +'/full',
+                    url: 'http://video-api.dev.ewr1.nytimes.com/svc/video/api/v3/playlist/'+ id +'/full?offset=0,5',
                     type: 'GET',
                     crossDomain: true,
-                    dataType: 'json',
+                    dataType: 'jsonp',
                     context : this,
                     cache : true,
                     timeout: this.TIMEOUT,

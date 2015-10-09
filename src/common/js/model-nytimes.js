@@ -65,7 +65,7 @@
         this.loadChannel = function(id) {
             return new Promise(function (resolve, reject) {
                 utils.ajaxWithRetry({
-                    url: 'http://10.51.102.117:4000/svc/video/api/v3/playlist/'+ id +'/full',
+                    url: appSettings.dataURL.replace("{{id}}", id),
                     type: 'GET',
                     crossDomain: true,
                     dataType: 'json',
@@ -146,7 +146,9 @@
                     }
                 }
 
-                media.id = video.id;
+
+                media.data_id = Date.now();
+                media.data_id = video.id;
                 media.title = video.headline;
                 media.pubDate = "";
                 media.thumbURL = "http://static01.nyt.com" + thumb.url;
