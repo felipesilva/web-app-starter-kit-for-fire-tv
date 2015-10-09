@@ -7,7 +7,7 @@
         // Model: JSONMediaModel,
         PlayerView: PlayerView,
         PlaylistView: PlaylistPlayerView,
-        dataURL: "http://10.51.102.117:4000/svc/video/api/v3/playlist/1194811622182/full",
+        dataURL: "http://10.51.211.52:4000/svc/video/api/v3/playlist/{{id}}/full",
         // dataURL: "./assets/genericMediaData.json",
         showSearch: true,
         displayButtons: false,
