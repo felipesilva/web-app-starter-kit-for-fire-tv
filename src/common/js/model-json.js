@@ -29,23 +29,26 @@
          * @param {function} the callback function to call with the loaded data
          */
         this.loadInitialData = function (dataLoaded) {
-            // this.loadChannelPlaylists(function(channelIds){
-            //     this.loadChannels(channelIds, dataLoaded);
-            // }.bind(this));
             this.loadChannelPlaylists()
                 .then(this.loadAllChannels)
                 .then(function(channels){
                     var medias = [];
+                    console.log("Channels", channels);
 
                     channels.forEach(function(channel){
+                        console.log("video", channel[0].title, " - channel", channel[0].categories[0]);
+                        console.log("video", channel[1].title, " - channel", channel[1].categories[0]);
+                        console.log("video", channel[2].title, " - channel", channel[2].categories[0]);
+                        console.log("video", channel[3].title, " - channel", channel[3].categories[0]);
+                        console.log("video", channel[4].title, " - channel", channel[4].categories[0]);
                         channel.forEach(function(video){
                             medias.push(video);
                         });
                     });
 
-                    this.handleJsonData({media: medias});
-
                     console.log({media: medias});
+
+                    this.handleJsonData({media: medias});
                     dataLoaded();
                 }.bind(this));
         }.bind(this);
@@ -65,7 +68,7 @@
         this.loadChannel = function(id) {
             return new Promise(function (resolve, reject) {
                 utils.ajaxWithRetry({
-                    url: 'http://10.51.102.117:4000/svc/video/api/v3/playlist/'+ id +'/full',
+                    url: 'http://10.51.211.52:4000/svc/video/api/v3/playlist/'+ id +'/full',
                     type: 'GET',
                     crossDomain: true,
                     dataType: 'json',
@@ -146,7 +149,8 @@
                     }
                 }
 
-                media.id = video.id;
+                media.id = new Date().getTime();
+                media.data_id = video.id;
                 media.title = video.headline;
                 media.pubDate = "";
                 media.thumbURL = "http://static01.nyt.com" + thumb.url;
@@ -230,6 +234,8 @@
                     }
                 }
             }
+
+            console.log("categories", categories);
         };
 
        /***************************
@@ -308,6 +314,7 @@
             this.currData = this.getFullContentsForFolder(currCat);
             this.currData = this.filterLiveData(this.currData);
             categoryCallback(this.currData);
+            console.log("this.currData", this.currData);
          }; 
 
          /** 
@@ -391,6 +398,7 @@
                     }
                 }
             }
+            console.log("this.getFullContentsForFolder", contents, this.mediaData);
             return contents;
          };
 
