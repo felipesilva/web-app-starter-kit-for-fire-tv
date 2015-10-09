@@ -151,14 +151,14 @@ $color-thumbnail-border: $custom-color-component-fg;
         margin-bottom: 20px !important;
     }
     .one-D-summary-description {
-        font-family: georgia,'times new roman',serif;
+        font-family: $font-family-light;
         font-style: normal !important;
         line-height: 1.2em !important;
     }
 }
 
 .player-controls-content-subtitle {
-    font-family: georgia,'times new roman',serif;
+    font-family: $font-family-light;
     font-style: normal !important;
     line-height: 1.2em !important;
 }
