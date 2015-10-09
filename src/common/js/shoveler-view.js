@@ -45,10 +45,11 @@
                 bottom: 0,
                 left: 0,
                 'z-index': -1,
+                opacity: 0.4,
                 'background-size': 'cover',
                 '-webkit-filter': 'blur(15px)',
                 '-webkit-transition-property': '-webkit-transform, opacity',
-                '-webkit-transition-duration': '0.2s',
+                '-webkit-transition-duration': '0.1s',
                 '-webkit-transition-timing-function': 'linear'
             })
             .appendTo('#one-D-view-item-elements');
@@ -61,10 +62,11 @@
                 bottom: 0,
                 left: 0,
                 'z-index': -1,
+                opacity: 0.4,
                 'background-size': 'cover',
                 '-webkit-filter': 'blur(15px)',
                 '-webkit-transition-property': '-webkit-transform, opacity',
-                '-webkit-transition-duration': '0.2s',
+                '-webkit-transition-duration': '0.1s',
                 '-webkit-transition-timing-function': 'linear'
             })
             .appendTo('#one-D-view-item-elements');
@@ -405,20 +407,20 @@
             this.currentImgSrc = selectedEle.getElementsByTagName('img')[0].src;
 
             if (this.alternateImgIndex === 0) {
-                this.$imgBg2.css('opacity', 0);
                 this.$imgBg1
                     .css({
                         'background-image': "url('" + this.currentImgSrc + "')",
                         opacity: 0.4
                     });
+                this.$imgBg2.css('opacity', 0);
                 this.alternateImgIndex = 1;
             } else {
-                this.$imgBg1.css('opacity', 0);
                 this.$imgBg2
                     .css({
                         'background-image': "url('" + this.currentImgSrc + "')",
                         opacity: 0.4
                     });
+                this.$imgBg1.css('opacity', 0);
                 this.alternateImgIndex = 0;
             }
 
