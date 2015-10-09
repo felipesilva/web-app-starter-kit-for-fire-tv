@@ -64,17 +64,17 @@ $color-thumbnail-border: $custom-color-component-fg;
 
 
 .app-logo img{
-    width: 630px !important;
+    width: 340px !important;
 }
 .app-logo {
     font-size: 2.2em;
     font-weight: lighter;
     text-align: right;
     color: $custom-color-component-fg;
-    left: 50%;
-    right: auto !important;
+    left: auto !important;
+    right: 110px !important;
     bottom: auto !important;
-    margin-left: -315px;
+    margin-left: 0;
     top: 56px;
 }
 
@@ -140,11 +140,16 @@ $color-thumbnail-border: $custom-color-component-fg;
     }
 }
 
+#one-D-summary-container {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 30px;
+}
+
 .one-D-details-summary-text {
     .one-D-summary-title {
         height: 75px !important;
         margin-bottom: 8px !important;
-        border-bottom: 1px solid #E6E6E6;
+        margin-top: -10px !important;
     }
     .one-D-summary-pubdate {
         color: #888888 !important;
