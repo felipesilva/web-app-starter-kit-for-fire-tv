@@ -1,9 +1,12 @@
 @import "../../common/scss/mixins";
 
-//font-family
-$font-family-light   : "nyt-cheltenham", 'times new roman', serif !default;
-$font-family-medium  : "nyt-cheltenham", 'times new roman', serif !default;
-$font-family-bold    : "nyt-cheltenham", 'times new roman', serif !default;
+//font-family overrides
+$font-family-light      : "nyt-cheltenham", 'times new roman', serif !default;
+$font-family-medium     : "nyt-cheltenham", 'times new roman', serif !default;
+$font-family-bold       : "nyt-cheltenham", 'times new roman', serif !default;
+
+$font-family-chelt      : "nyt-cheltenham", 'times new roman', serif !default;
+$font-family-franklin   : "nyt-franklin", 'times new roman', serif !default;
 
 $img-app-background : none;
 $img-icon-leftnav   : none;
@@ -142,28 +145,31 @@ $color-thumbnail-border: $custom-color-component-fg;
 
 #one-D-summary-container {
     background-color: rgba(0, 0, 0, 0.4);
-    padding: 30px;
+    padding: 60px;
+    font-family: $font-family-chelt !important;
 }
 
 .one-D-details-summary-text {
     .one-D-summary-title {
-        height: 75px !important;
+        font-family: $font-family-chelt !important;
+        line-height: 1 !important;
+        height: auto !important;
+        margin-top: 0 !important;
         margin-bottom: 8px !important;
-        margin-top: -10px !important;
     }
     .one-D-summary-pubdate {
-        color: #888888 !important;
+        color: #CCCCCC !important;
         margin-bottom: 20px !important;
     }
     .one-D-summary-description {
-        font-family: $font-family-light;
+        font-family: $font-family-franklin;
         font-style: normal !important;
         line-height: 1.2em !important;
     }
 }
 
 .player-controls-content-subtitle {
-    font-family: $font-family-light;
+    font-family: $font-family-chelt;
     font-style: normal !important;
     line-height: 1.2em !important;
 }
