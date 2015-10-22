@@ -63,7 +63,7 @@
         this.loadChannel = function(id) {
             return new Promise(function (resolve, reject) {
                 utils.ajaxWithRetry({
-                    url: 'http://video-api.dev.ewr1.nytimes.com/svc/video/api/v3/playlist/'+ id +'/full?offset=0,5',
+                    url: appSettings.dataURL.replace('{{id}}', id),
                     type: 'GET',
                     crossDomain: true,
                     dataType: 'jsonp',
